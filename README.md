@@ -5,6 +5,8 @@
 
 [English :eu:](#assignment)
 
+[Presentation video clip :film_strip:](#videoclip-de-prezentare)
+
 ## Assignment
 Implementation of an "Online Shop" platform with a theme of choice.
 
@@ -47,4 +49,5 @@ Colaboratorii vor putea să introducă produse, care însă vor fi verificate de
 
 Adminul are control deplin asupra aplicației. Suplimentar pe lângă colaborator, acesta va avea secțiunile _Categories_ și _Coupon_ unde poate crea, vedea, edita și șterge toate categoriile, respectiv cupoanele existente. El poate șterge orice produs existent. El vede request-urile trimise de colaboratori și le poate accepta sau șterge. Acesta gestionează conturile făcute. Poate atribui sau revoca drepturi utilizatorilor și, în final, le poate șterge. 
 
+## Videoclip de prezentare
 https://user-images.githubusercontent.com/91901282/212734227-75d0322d-db4b-4eea-948a-2f842142b1dc.mp4
