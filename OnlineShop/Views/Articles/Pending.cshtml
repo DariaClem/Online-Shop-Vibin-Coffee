@@ -1,0 +1,142 @@
+﻿@model OnlineShop.Models.Article
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
+
+
+<div class="registerBg">
+</div>
+
+<div class="cadru cadru4">
+    <div class="date3">
+        @if (User.IsInRole("Admin"))
+        {
+            <h2>Requests</h2>
+        } else if (User.IsInRole("Colaborator"))
+        {
+            <h2>My products</h2>    
+        }
+        <div class="pendingCentrare">
+            @if (User.IsInRole("Admin"))
+            {
+                @if ((((IEnumerable<dynamic>)ViewBag.Articles).Where(art => art.Accepted == false)).Count() == 0)
+                {
+                    <p>There are no requests from colaborators.</p>
+                }
+                @foreach (var art in (((IEnumerable<dynamic>)ViewBag.Articles).Where(art => art.Accepted == false)))
+                {
+                    <div class="pending">
+                        <div class="pendingButoane">
+                            <form method="post" action="/Articles/Pending/@art.Id">
+                                <button class="butonProdus" type="submit">Accept</button>
+                            </form>
+                            <form method="post" action="/Articles/Delete/@art.Id">
+                                <button class="butonStergere" type="submit">Delete</button>
+                            </form>
+                        </div>
+                        <div class="pendingInfo">
+                            <div class="pendingText">
+                                <div class="categoryName">@art.Date</div>
+                                <div class="categoryName">@art.Category.CategoryName</div>
+                                <br />
+                                <strong>@art.User</strong>
+                                <p>@art.Title</p>
+                                <h5>@art.Content</h5>
+                                <br/>
+                                <strong>@((art.Price).ToString("0.00")) USD</strong>
+                                <p>@art.Weight gr</p>
+                            </div>
+                        </div>
+                        <div class="pendingPoze">
+                            @{
+                                var p = (((IEnumerable<dynamic>)ViewBag.Photos).Where(id => id.ArticleId == art.Id));
+                                @foreach (var poza in p)
+                                {
+                                    <img src="@poza.Id">
+                                }
+                            }
+                        </div>
+                        <hr />
+                    </div>
+                }
+            }
+
+            @if (User.IsInRole("Colaborator"))
+            {
+                @if ((((IEnumerable<dynamic>)ViewBag.Articles).Where(id => id.UserId == ViewBag.UserCurent)) == null)
+                {
+                    <p>There are no products to display.</p>
+                }
+                @foreach (var art in (((IEnumerable<dynamic>)ViewBag.Articles).Where(id => id.UserId == ViewBag.UserCurent)))
+                {
+                    <div class="pending">
+                        <div class="pendingButoane">
+                            @if (art.Accepted == true)
+                            {
+                                <strong>Status: Accepted</strong>
+                                <a href="/Articles/Show/@art.Id"><button class="butonProdus">Go to product page</button></a>
+                            }
+                            else
+                            {
+                                <strong>Status: Pending&nbsp;<i class="fi fi-rr-loading"></i></strong>
+                                    <a class="butonDezactivat"><button class="butonProdusDezactivat">Go to product page</button></a>
+                            }
+                            <form method="post" action="/Articles/Delete/@art.Id">
+                                <button class="butonStergere" type="submit">Delete</button>
+                            </form>
+                            </div>
+                        <div class="pendingInfo">
+                            <div class="pendingText">
+                                <div class="categoryName">@art.Date</div>
+                                <div class="categoryName">@art.Category.CategoryName</div>
+                                <br />
+                                <strong>@art.User</strong>
+                                <p>@art.Title</p>
+                                <h5>@art.Content</h5>
+                                <br />
+                                <strong>@((art.Price).ToString("0.00")) USD</strong>
+                                <p>@art.Weight gr</p>
+                            </div>
+                        </div>
+                        <div class="pendingPoze">
+                            @{
+                                var p = (((IEnumerable<dynamic>)ViewBag.Photos).Where(id => id.ArticleId == art.Id));
+                                @foreach (var poza in p)
+                                {
+                                    <img src="@poza.Id">
+                                }
+                            }
+                        </div>
+                        <br>
+                        <hr/>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@if (TempData["message"] != null)
+{
+    <div class="alertCentru" id="alertCentru">
+        <div class="@TempData["classes"]" id="alert">
+            @if (TempData["symbol"] != null)
+            {
+                <p><i class="fi fi-br-check"></i>&nbsp;@TempData["message"]</p>
+            }
+            else
+            {
+                <p>@TempData["message"]</p>
+            }
+            <div class="inchis" id="inchis">
+                <i class="fi fi-br-cross"></i>
+            </div>
+        </div>
+    </div>
+}

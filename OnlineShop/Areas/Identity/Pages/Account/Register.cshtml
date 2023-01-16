@@ -1,0 +1,81 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="registerBg">
+</div>
+
+<div class="formular">
+    <div class="date">
+        <div class="h1">
+            <h1>@ViewData["Title"]</h1>
+        </div>
+        <form class="form" id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div class="h2">
+                <h2>Create a new account.</h2>
+            </div>
+            <br />
+            <div class="invalidLogin" asp-validation-summary="ModelOnly"></div>
+            <br />
+            <div class="email">
+                <label asp-for="Input.Email"></label>
+                <br />
+                <input asp-for="Input.Email" autocomplete="username" aria-required="true" />
+            </div>
+            <span class="emailConfirmat" asp-validation-for="Input.Email"></span>
+            <br />
+            <div class="password">
+                <label asp-for="Input.Password"></label>
+                <br />
+                <input asp-for="Input.Password" autocomplete="new-password" aria-required="true" />
+            </div>
+            <span class="emailConfirmat" asp-validation-for="Input.Password"></span>
+            <br />
+            <div class="confirmPassword">
+                <label asp-for="Input.ConfirmPassword"></label>
+                <br />
+                <input asp-for="Input.ConfirmPassword" autocomplete="new-password" aria-required="true" />     
+            </div>
+            <span class="emailConfirmat" asp-validation-for="Input.ConfirmPassword"></span>
+            <br />
+            <div class="register">
+                <button class="butonFinal butonRegister" id="registerSubmit" type="submit"><span></span>Register</button>
+            </div>
+        </form>
+    </div>
+    @*<div>
+    <section>
+    <h3>Use another service to register.</h3>
+    @{
+    if ((Model.ExternalLogins?.Count ?? 0) == 0)
+    {
+    <div>
+    <p>
+    There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
+    about setting up this ASP.NET application to support logging in via external services</a>.
+    </p>
+    </div>
+    }
+    else
+    {
+    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+    <div>
+    <p>
+    @foreach (var provider in Model.ExternalLogins)
+    {
+    <button type="submit" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+    }
+    </p>
+    </div>
+    </form>
+    }
+    }
+    </section>
+    </div>*@
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

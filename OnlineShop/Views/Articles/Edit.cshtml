@@ -1,0 +1,87 @@
+﻿@model OnlineShop.Models.Article
+
+@{
+    ViewBag.Title = "Edit product";
+}
+
+<div class="registerBg">
+</div>
+
+<div>
+    <div class="cadru">
+        <div class="date3">
+            <h2>@ViewBag.Title</h2>
+            <div class="adaugaComentariu">
+                <div>
+                    <form method="post" action="/Articles/Edit/@ViewBag.Articles.Id">
+                        <label>Select category:&nbsp;</label>
+                        <div class="select">
+                        <select name="CategoryId" onclick="changeColor(this)">
+                            @foreach (var category in ViewBag.Categories)
+                            {
+                                if (category.Id == ViewBag.Category.Id)
+                                {
+                                    <option selected="selected" value="@category.Id">@category.CategoryName</option>
+                                }
+                                else
+                                {
+                                    <option value="@category.Id">
+                                        @category.CategoryName
+                                    </option>
+                                }
+                            }
+                        </select>
+                        </div>
+                        <br />
+                        <br />
+                        <label>Title:</label>
+                        <br />
+                        <input name="Title" value="@ViewBag.Articles.Title" class="titluNew" />
+                        <br />
+                        <span class="emailConfirmat" asp-validation-for="Title"></span>
+                        <br />
+                        <label>Content:</label>
+                        <textarea name="Content">@ViewBag.Articles.Content</textarea>
+                        <span class="emailConfirmat" asp-validation-for="Content"></span>
+                        <div class="priceWeight">
+                            <div>
+                                <label>Price (USD):</label>
+                                <input name="Price" pattern="^\d*(\,\d{0,2})?$" value="@ViewBag.Articles.Price" />
+                                <br />
+                                <span class="emailConfirmat" asp-validation-for="Price"></span>
+                            </div>
+                            <div>
+                                <label>Weight (grams):</label>
+                                <input name="Weight" type="number" value="@ViewBag.Articles.Weight" />
+                                <br />
+                                <span class="emailConfirmat" asp-validation-for="Weight"></span>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <button type="submit">Add product</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["message"] != null)
+{
+    <div class="alertCentru" id="alertCentru">
+        <div class="@TempData["classes"]" id="alert">
+            @if (TempData["symbol"] != null)
+            {
+                <p><i class="fi fi-br-check"></i>&nbsp;@TempData["message"]</p>
+            }
+            else
+            {
+                <p>@TempData["message"]</p>
+            }
+            <div class="inchis" id="inchis">
+                <i class="fi fi-br-cross"></i>
+            </div>
+        </div>
+    </div>
+}

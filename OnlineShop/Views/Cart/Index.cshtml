@@ -1,0 +1,132 @@
+﻿@model OnlineShop.Models.Article
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
+
+<div class="registerBg">
+</div>
+
+<div class="cadru">
+    <div class="date3">
+        <div class="cartPage">
+            <div class="itemsFromCart">
+               <h2>Cart items</h2>
+               <br />
+                   @if (((IEnumerable<dynamic>)ViewBag.CartItems).Count() == 0)
+                    {
+                        <p>You have not added any items in your cart.</p>
+                    }
+                    else
+                    {
+                        @foreach (var item in ViewBag.CartItems)
+                        {
+                            @foreach (var product in ((IEnumerable<dynamic>)ViewBag.Articles).Where(prod => prod.Id == item.ArticleId))
+                            {
+                            <div class="infoCart">
+                                <div class="pozaInformatiiCart">
+                                    <div class="pozaCart">
+                                        @{var poza = ((IEnumerable<dynamic>)ViewBag.Photos).Where(poza => poza.ArticleId == product.Id).First();}
+                                        <img src="@poza.Id">
+                                    </div>
+                                    <div class="infoProductCart">
+                                        <div class="categoryName">@product.Category.CategoryName</div>
+                                        <p>@product.Title</p>
+                                    </div>
+                                </div>
+                                <div class="cantitatePret">
+                                    <strong>
+                                    @{
+                                        var pretFinal = product.Price;
+                                        if(ViewBag.Discount != null)
+                                        {
+                                            var discount = ViewBag.Discount;
+                                            pretFinal = product.Price - (discount * product.Price) / 100;
+                                                <a class="oldPrice">@(product.Price.ToString("0.00"))</a>
+                                        }
+                                    }
+                                        @((pretFinal * item.ArticleCount).ToString("0.00")) USD</strong>
+                                    <div class="butoaneCount">
+                                        <form method="post" action="/Cart/CountDown/@product.Id">
+                                            <button type="submit"><i class="fi fi-br-minus"></i></button>
+                                        </form>
+                                        <p>@item.ArticleCount</p>
+                                        <form method="post" action="/Cart/CountUp/@product.Id">
+                                            <button type="submit"><i class="fi fi-br-plus"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="butonStergereProdusCos">
+                                    <form method="post" action="/Cart/Delete/@product.Id">
+                                        <button type="submit"><i class="fi fi-sr-trash cosDeGunoi"></i></button>
+                                    </form>
+                                </div>
+
+                            </div>
+                            }
+                        }
+                    }
+            </div>
+            <div class="placeOrder">
+                <div>
+                    <h3>Order details:</h3>
+                    <br />
+                    <p>Total: @((ViewBag.Total).ToString("0.00")) USD</p>
+
+                    @if (ViewBag.Livrare <= 0)
+                    {
+                        <p>Shipping costs: 0 USD </p>
+                        <small>Free shippment</small>
+                    }
+                    else
+                    {
+                        <p>Shipping costs: 10,99 USD</p>
+                        <small>You must add products worth @((ViewBag.Livrare).ToString("0.00")) USD to benefit from free delivery</small>
+                    }
+                    <br />
+                    <br />
+
+                    <div class="comanda">
+                        <div class="butoaneComanda">
+                            @if (((IEnumerable<dynamic>)ViewBag.CartItems).Count() == 0)
+                            {
+                                <button class="butonProdusDezactivat">Place order</button>
+                            }
+                            else
+                            {
+                                <form method="post" action="/Orders/New">
+                                    <button type="submit">Place order</button>
+                                </form>
+                            
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["message"] != null)
+{
+    <div class="alertCentru" id="alertCentru">
+        <div class="@TempData["classes"]" id="alert">
+            @if (TempData["symbol"] != null)
+            {
+                    <p><i class="fi fi-br-check"></i>&nbsp;@TempData["message"]</p>
+            }
+            else
+            {
+                        <p>@TempData["message"]</p>
+            }
+                <div class="inchis" id="inchis">
+                    <i class="fi fi-br-cross"></i>
+                </div>
+            </div>
+        </div>
+}

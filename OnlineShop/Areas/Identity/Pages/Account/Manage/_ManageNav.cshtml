@@ -1,0 +1,17 @@
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+<div class="verticalNavbar">
+    <ul>
+        <li class="verticalLi"><a class="verticalA @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>
+        <li class="verticalLi"><a class="verticalA @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
+        <li class="verticalLi"><a class="verticalA @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
+        @if (hasExternalLogins)
+        {
+            <li class="verticalLi" id="external-logins"><a id="external-login" class="verticalA @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
+        }
+        <li class="verticalLi"><a class="verticalA @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>
+    </ul>
+</div>

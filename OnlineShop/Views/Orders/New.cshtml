@@ -1,0 +1,91 @@
+﻿@model OnlineShop.Models.Order
+
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+
+<div class="registerBg">
+</div>
+
+<div class="cadru">
+    <div class="date3">
+        <div class="categoryCentrare pendingCentrare">
+            <h2>Order details</h2>
+            <div class="adaugaComentariu">
+                <div>
+                    <form method="post" action="/Orders/PlaceOrder">
+                        <div class="priceWeight FirstLastName">
+                            <div>
+                                <label>First name</label>
+                                <br/>
+                                <input name="FirstName"/>
+                                <br/>
+                                <span class="emailConfirmat" asp-validation-for="FirstName"></span>
+                            </div>
+                            <div>
+                                <label>Last name</label>
+                                <br />
+                                <input name="LastName"/>
+                                <br />
+                                <span class="emailConfirmat" asp-validation-for="LastName"></span>
+                            </div>
+                        </div>
+                        <br />
+                        <label>Country</label>
+                        <br />
+                        <input name="Country"/>
+                        <br />
+                        <span class="emailConfirmat" asp-validation-for="Country"></span>
+                        <br />
+                        <label>City</label>
+                        <br />
+                        <input name="City"/>
+                        <br />
+                        <span class="emailConfirmat" asp-validation-for="City"></span>
+                        <br />
+                        <label>Address</label>
+                        <br/>
+                        <input name="Address"/>
+                        <br/>
+                        <span class="emailConfirmat" asp-validation-for="Address"></span>
+                        <br />
+                        <label>Phone number</label>
+                        <br/>
+                        <input name="PhoneNumber"/>
+                        <br/>
+                        <span class="emailConfirmat" asp-validation-for="PhoneNumber"></span>
+                        <br />
+                        <label>Shipping</label>
+                        <br />
+                        <br />
+                        <div class="metodeDeLivrare">
+                            <div>
+                                <input class="livrare" type="radio" id="standard" name="DeliveryMethod" value="Standard shipping" checked />
+                                &nbsp;
+                                <label for="standard">Standard shipping (5 - 7 days)</label>
+                                <div class="highlight"></div>
+                            </div>
+                            <div>
+                                <input class="livrare" type="radio" id="express" name="DeliveryMethod" value="Express shipping" />
+                                &nbsp;
+                                <label for="express">Express shipping (1 - 2 days, includes extra fees)</label>
+                                <div class="highlight"></div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <label>Discount code</label>
+                        <br />
+                        <div class="discountCode">
+                            <input name="CouponId" class="titluNew" />
+                            <br />
+                            <span class="emailConfirmat" asp-validation-for="CouponId"></span>
+                        </div>
+                        <button type="submit">Place Order</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

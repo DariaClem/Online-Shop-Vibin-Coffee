@@ -1,0 +1,52 @@
+﻿@model OnlineShop.Models.Category
+
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+
+@{
+    ViewBag.Title = "Edit category";
+}
+
+<div class="registerBg">
+</div>
+
+<div>
+    <div class="cadru">
+        <br />
+        <div class="date3">
+            <h2 class="comentariuh2">@ViewBag.Title</h2>
+            <div class="adaugaComentariu">
+                <div>
+                    <form method="post" action="/Categories/Edit/@ViewBag.Category.Id">
+                        <label>Category name</label>
+                        <br /> <input type="text" name="CategoryName" value="@ViewBag.Category.CategoryName" />
+                        <br />
+                        <span class="emailConfirmat" asp-validation-for="CategoryName"></span>
+                        <br />
+                        <button type="submit">Apply changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+@if (TempData["message"] != null)
+{
+        <div class="alertCentru" id="alertCentru">
+            <div class="@TempData["classes"]" id="alert">
+            @if (TempData["symbol"] != null)
+            {
+                 <p><i class="fi fi-br-check"></i>&nbsp;@TempData["message"]</p>
+            }
+            else
+            {
+                 <p>@TempData["message"]</p>
+            }
+                <div class="inchis" id="inchis">
+                    <i class="fi fi-br-cross"></i>
+                </div>
+            </div>
+        </div>
+}

@@ -1,0 +1,83 @@
+﻿@model OnlineShop.Models.Category
+
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+<div class="registerBg">
+</div>
+
+
+<div>
+    <div class="cadru">
+        <div class="date3">
+            <h2 class="comentariuh2">@ViewBag.Title</h2>
+            <div class="adaugaComentariu">
+                <div>
+                    <form method="post" action="/Categories/New">
+                        <label>Add a new category</label>
+                        <br />
+                        <input type="text" name="CategoryName" />
+                        <span class="emailConfirmat" asp-validation-for="CategoryName"></span>
+                        <br /><br />
+                        <button type="submit">Add category</button>
+                    </form>
+                </div>
+                <br />
+                <p><i class="fi fi-rr-exclamation"></i></i>&nbsp;Deleting a category means both deleting it and deleting the articles associated with it.</p>
+                <br />
+                <h3>Category list:</h3>
+                <br />
+                <hr />
+                <br />
+            </div>
+            <div class="categoryCentrare pendingCentrare">
+                @foreach (var cat in ViewBag.Category)
+                {
+                    <div class="categories">
+                        <div class="pendingInfo">
+                            <div class="pendingText">
+                                <p>@cat.CategoryName</p>
+                                @{var articoleAsociate = (((IEnumerable<dynamic>)ViewBag.Articles).Where(id => id.CategoryId == cat.Id));}
+                                <p>Associated products:&nbsp;@articoleAsociate.Count()</p>
+                            </div>
+                        </div>
+                        <div class="pendingButoane">
+                            <a href="/Categories/Edit/@cat.Id"><button class="butonProdus"><i class="fi fi-rr-edit"></i>&nbsp;Edit</button></a>
+                            <form method="post" action="/Categories/Delete/@cat.Id">
+                                <button class="butonStergere" id="deleteCateg" type="submit"><i class="fi fi-sr-trash"></i>&nbsp;Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                    <hr />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["message"] != null)
+{
+    <div class="alertCentru" id="alertCentru">
+        <div class="@TempData["classes"]" id="alert">
+            @if (TempData["symbol"] != null)
+            {
+                <p><i class="fi fi-br-check"></i>&nbsp;@TempData["message"]</p>
+            }
+            else
+            {
+
+                <p>@TempData["message"]</p>
+            }
+            <div class="inchis" id="inchis">
+                <i class="fi fi-br-cross"></i>
+            </div>
+        </div>
+    </div>
+}

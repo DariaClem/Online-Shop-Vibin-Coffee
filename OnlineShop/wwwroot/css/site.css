@@ -1,0 +1,1363 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Italiana&family=Mulish:wght@200;300;400;500;600;700;800;900;1000&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Mulish', serif;
+    font-weight: 300;
+    color: white;
+    scroll-behavior: smooth;
+}
+
+
+p {
+    text-align: justify;
+}
+
+html {
+    font-size: 16px;
+    overflow-x: hidden;
+    background: rgba(8, 17, 28, 1);
+}
+
+.body {
+    min-height: 100vh;
+    background-size: cover;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.fade {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: -10;
+    background-image: linear-gradient( to bottom, rgba(10,18,28,1),rgba(10,18,28,0.6),transparent, transparent, transparent, transparent, transparent, transparent, transparent, rgba(8, 17, 28, 0.3), rgba(8, 17, 28, 0.8), rgba(8, 17, 28, 1)), url("../Poze/bg1.png");
+    min-height: 120vh;
+    background-size: cover;
+}
+
+.fit {
+    position: relative;
+    min-height: 100vh;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+}
+
+.first {
+    padding-bottom: 2.5rem;
+}
+
+ul li {
+    list-style: none;
+    margin: 0 20px;
+    display: inline-block;
+    position: relative;
+}
+
+ul li a, a {
+    text-decoration: none;
+    color: #fff;
+}
+
+ul li a::after {
+    content: '';
+    width: 0;
+    height: 3px;
+    position: absolute;
+    background: #53B7BA;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+
+ul li a:hover::after {
+    width: 100%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 0;
+    width: 90%;
+    margin: auto;
+}
+
+.intro {
+    margin-top: 50px;
+    margin-left: 45px;
+    max-width: 600px;
+    height: 45em;
+}
+
+
+.aliniere {
+    margin: 10px 30px;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+.options > p {
+    text-align: center;
+}
+
+h1 {
+    font-size: 80px;
+    font-weight: 500;
+    font-family: 'Italiana', serif;
+    color: white;
+}
+
+h2 {
+    align-self: center;
+    font-weight: 300;
+    font-size: 3em;
+    font-family: 'Italiana', serif;
+}
+
+.welcome-p {
+    margin: 10px 0 30px;
+    font-size: 20px;
+    color: white;
+}
+
+@font-face {
+    font-family: "Cherolina";
+    src: url("../Fonts/cherolina-webfont.woff") format('woff');
+    src: url("../Fonts/cherolina-webfont.woff2") format('woff');
+}
+
+.navbar-brand {
+    font-family: Cherolina;
+    text-transform: none;
+    font-size: 80px;
+}
+
+button, #delete {
+    background: rgba(83, 183, 186, 0.52);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+    font-weight: 500;
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+#delete {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+span {
+    background: rgba(9, 17, 27, 0.65);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.4px);
+    -webkit-backdrop-filter: blur(7.4px);
+    height: 100%;
+    width: 0;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.5s;
+}
+
+button:hover span, #delete:hover span {
+    width: 100%;
+}
+
+button:hover, #delete:hover {
+    background: transparent;
+}
+
+footer {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-flow: row;
+    height: 2.5rem;
+}
+
+.presentation {
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+}
+
+img {
+    pointer-events: none;
+    height: 25em;
+}
+
+.centru {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+}
+
+.centru1 {
+    width: 100%;
+}
+
+.story {
+    display: flex;
+    width: 57.5em;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row;
+}
+
+.rotund > img {
+    border-radius: 50%;
+    height: 20em;
+}
+
+.story > p {
+    width: 500px;
+}
+
+
+.butonTop {
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid rgba(24,67,80,255);
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.spanTop {
+    background: rgba(24,67,80,255);
+    height: 100%;
+    width: 0;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.5s;
+}
+
+.anim {
+    opacity: 0;
+}
+
+.act {
+    animation: moveup 0.5s linear forwards;
+    transform: translateY(30px);
+}
+
+@keyframes moveup {
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+
+    .text-center {
+        margin-top: 10px;
+        margin-left: 1px;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(8, 17, 28, 1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(24,67,80, 0.6);
+    border-radius: 50px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(24,67,80, 1);
+        border-radius: 50px;
+    }
+
+::-webkit-scrollbar-corner {
+    background-color: rgba(8, 17, 28, 1);
+}
+
+
+/*Register form*/
+
+input {
+    margin: 5px 0px;
+}
+
+.h2 {
+    display: flex;
+    justify-content: center;
+}
+
+.h1 > h1, .h2 > h2, .h3 > h3 {
+    text-align: center;
+}
+
+.registerBg {
+    width: 100%;
+    position: absolute;
+    top: -235px;
+    z-index: -10;
+    min-height: 150vh;
+    background-size: cover;
+    background-image: linear-gradient(rgba(8, 17, 28, 0.85), rgba(8, 17, 28, 0.85)), url("../Poze/Fundal.png");
+}
+
+.formular {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+}
+
+.date {
+    width: 450px;
+    padding: 15px 30px;
+    margin-bottom: 19px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(83, 183, 186, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+}
+
+.form {
+    flex-flow: column;
+    width: 100%;
+}
+
+input {
+    font-weight: 400;
+    border-radius: 5px;
+    height: 30px;
+    width: 100%;
+    border: none;
+    color: rgba(8, 17, 28, 1);
+    padding: 0 2px;
+}
+
+.register {
+    display: flex;
+    flex-flow: column;
+}
+
+.butonRegister, #delete {
+    align-self: center;
+}
+
+/*Login form*/
+
+.rememberMe {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+.options > p {
+    font-size: 14px;
+}
+
+/*ManageNav*/
+
+.manageText {
+    margin: 10px 0;
+}
+
+.verticalNavbar {
+    display: flex;
+    flex-flow: column;
+    height: 100rem;
+}
+
+.verticalA {
+    text-decoration: none;
+}
+
+.verticalA::after {
+    bottom: 0;
+}
+
+.verticalLi {
+    padding: 1rem 0;
+}
+
+.verticalA {
+    text-transform: uppercase;
+}
+
+.verticalA.active::after {
+    width: 100%;
+}
+
+.manage {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    align-items: center;
+}
+
+.menuNav {
+    width: 75%;
+    height: 100%;
+}
+
+.navVertical {
+    grid-area: nav;
+    width: 185px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 15px;
+}
+
+.navVertical sticky {
+    height: 500px;
+}
+
+.text, .produse {
+    margin-left: 200px;
+    height: 100%;
+}
+
+.date2 {
+    width: 450px;
+    padding: 20px 30px;
+    margin-bottom: 19px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.butonFinal, #delete {
+    border: 2px solid rgba(24,67,80,255);
+}
+
+.butoane {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row;
+}
+
+.personalData > p {
+    text-align: justify;
+}
+
+.email {
+    position: relative;
+}
+
+.emailConfirmatCentru {
+    position: absolute;
+    display: inline-block;
+    right: -25px;
+    top: 29px;
+}
+
+.emailConfirmat {
+    all: unset;
+    color: red;
+    cursor: default;
+}
+
+.emailConfirmatCheck {
+    color: #489762 !important;
+}
+
+.butonLogout {
+    all: unset;
+    cursor: pointer;
+}
+
+.butonLogout {
+    margin: 0 20px;
+    display: inline-block;
+    position: relative;
+}
+
+.butonLogout::after {
+    content: '';
+    width: 0;
+    height: 3px;
+    position: absolute;
+    background: #53B7BA;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+
+.butonLogout a:hover::after {
+    width: 100%;
+}
+
+.email + span span, .password + span span, .confirmPassword + span span {
+    all: unset;
+}
+
+.invalidLogin ul li {
+    margin: 0;
+}
+
+.navVertical {
+    border-right: 10px solid rgba(8, 17, 28, 0.2);
+}
+
+/* Cards */
+
+.cadru {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.produse {
+    display: flex;
+    width: 80%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 60px;
+}
+
+.date3 {
+    width: 80%;
+    height: 100%;
+    padding: 15px 30px;
+    margin-bottom: 19px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(83, 183, 186, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+}
+
+.card {
+    position: relative;
+    width: 280px;
+    background: rgba(83, 183, 186, 0.52);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+
+.card .contentBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.card .contentBox h3 {
+    font-size: 18px;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card .contentBox .price {
+    font-size: 24px;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.card .contentBox .buy {
+    position: relative;
+    top: 0;
+    opacity: 1;
+    padding: 10px 30px;
+    margin-top: 15px;
+    color: black;
+    text-decoration: none;
+    background: white;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.5s;
+}
+
+.card .contentBox a{
+    width: 100%;
+}
+
+/* Alert */
+
+.alertCentru {
+    width: 100%;
+}
+
+
+.alert {
+    position: fixed;
+    background-color: #336d51;
+    width: 50%;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%,-10%);
+    height: 10%;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.inchis{
+    position: absolute;
+    right: 12px;
+    top: 8px;
+    opacity: 0.8;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.butonProdus {
+    border: none;
+}
+
+/* Produse */
+
+.descriere {    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.descriere > div {
+    padding: 15px 0;
+    width: 16rem;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+.productImage {
+    height: 300px;
+    width: 100%;
+    border-radius: 15px 0 0;
+
+}
+
+.butoaneCumparare {
+    display: flex;
+    justify-content: space-between;
+}
+
+.butoaneCumparare button {
+    width: 150px;
+}
+
+#cos {
+    width: 50px;
+    background:rgba(9, 17, 27, 0.6) ;
+}
+
+#cos:hover {
+    background: rgba(9, 17, 27, 0.7);
+}
+
+.infoCard {
+    padding: 0 12px;
+}
+
+.fi-rr-dollar {
+    display: flex;
+    justify-content: center;
+}
+
+.categoryName {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* Show Product */
+
+.slideShow {
+    height: 30rem;
+}
+
+/*.mySlides {
+    box-shadow: 20px 20px 50px rgb(49, 56, 58, 1);
+}*/
+
+.pozaPrezentare {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+
+.images {
+    display: none;
+    width: 45rem;
+    margin: 10px 0;
+    border-radius: 15px;
+}
+
+.images:first-child {
+    display: block;
+}
+
+.butonPoze {
+    position: absolute;
+    top: 13rem;
+    left: 3rem;
+    width: 50px;
+}
+
+.butonPoze:nth-of-type(2)
+{
+    left: 42.5rem;
+}
+
+.informatiiProdus {
+    margin: 9px 0;
+    width: 30rem;
+}
+
+.centrareInfo > .card-title {
+    font-size: 40px;
+}
+
+.pretCorect {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.centrareInfo {
+    margin-top: -5rem;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-flow: column;
+    gap: 20px;
+}
+
+.textarea {
+    border-radius: 15px;
+}
+
+textarea {
+    padding: 1px 5px;
+    color: black;
+    resize: none;
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+}
+
+.textarea ::-webkit-scrollbar {
+    width: 12px;
+}
+
+.textarea ::-webkit-scrollbar-track {
+    background: rgb(104, 156, 158);
+    border-radius: 10px;
+}
+
+.textarea ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+}
+
+/* Erori */
+
+.fi-rr-exclamation {
+    color: #ff4c4c;
+}
+
+/* Comentarii */
+
+.descriereComentarii {
+    width: 100%;
+}
+
+.comentariiProdus {
+    display: flex;
+    flex-flow: column;
+    gap: 40px;
+}
+
+.butoaneEditare {
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-flow: row;
+    gap: 10px;
+}
+
+.butonEditare {
+    width: 100px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.butoaneEditare strong{
+    font-size: 16px;
+}
+
+.comentariu {
+    border: 2px solid rgba(83, 183, 186, 0.2);
+    border-radius: 15px 15px 15px 0;
+    background: rgba(83, 183, 186, 0.2);
+}
+
+.comentariu div {
+    padding: 5px;
+}
+
+.comentariiProdus > div {
+    width: 100%;
+}
+
+.rating > strong{
+    position: relative;
+    width: 1em;
+    font-size: 2em;
+    color: #FFD700;
+    cursor: default;
+}
+
+.rating > strong a::before {
+    content: "\2605";
+    color: #FFD700;
+    position: absolute;
+    opacity: 1;
+}
+
+.ratingSelectare {
+    display: flex;
+    justify-content: flex-end;
+    flex-flow: row-reverse;
+}
+
+.ratingSelectare > input {
+    display: none;
+}
+
+.ratingSelectare > label {
+    position: relative;
+    width: 1em;
+    font-size: 2em;
+    color: #FFD700;
+    cursor: pointer;
+}
+
+.ratingSelectare > label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0;
+}
+
+.ratingSelectare > label:hover:before,
+.ratingSelectare > label:hover ~ label:before {
+    opacity: 1 !important;
+}
+
+.ratingSelectare > input:checked ~ label:before {
+    opacity: 1;
+}
+
+.ratingSelectare:hover > input:checked ~ label:before {
+    opacity: 0.4;
+}
+
+
+.adaugaComentariu {
+    width: 100%;
+}
+
+.centrareEditCadru {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+/* Pending */
+
+.pendingCentrare {
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    width: 100%;
+    gap: 60px;
+}
+
+.pending {
+    width: 78rem;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.pendingInfo {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row;
+    width: 100%;
+}
+
+.pendingPoze {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    gap: 15px;
+}
+
+.pendingButoane {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65px;
+}
+
+.pendingPoze img {
+    width: 18.5rem;
+}
+
+.butonProdusDezactivat {
+    color: rgb(158, 158, 158);
+    background: rgba(42, 48, 52, 0.7);
+    cursor: default;
+}
+
+.butonProdusDezactivat:hover {
+    background: rgba(42, 48, 52, 0.7);
+}
+
+hr {
+    border: 12px solid rgba(104, 156, 158, 0.2);
+    width: 79rem;
+}
+
+.butonStergere {
+    background: #9a2828;
+}
+
+.butonStergere:hover {
+    background: rgb(104, 29, 29);
+}
+
+/* Animatie loading */
+.fi-rr-loading::before {
+    display: inline-block;
+    width: 1rem;
+    font-size: 1rem;
+    animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+/* Notificare */
+
+.fi-ss-circle-small{
+    color: #ff4c4c;
+    font-size: 9px;
+}
+
+.categories {
+    width: 78rem;
+    display: flex;
+    flex-flow: row;
+    gap: 10px;
+}
+
+.categoryCentrare {
+    gap: 30px !important;
+}
+
+.fi-rr-exclamation {
+    height: 100%;
+}
+
+/* Cart */
+
+.cartPage {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row;
+    width: 100%;
+}
+
+.itemsFromCart {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 20px;
+}
+
+.infoCart {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    width: 55rem;
+    height: 7rem;
+    background: rgba(83, 183, 186, 0.52);
+    border-radius: 15px;
+    padding: 15px;
+    position: relative;
+}
+
+.pozaInformatiiCart {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.pozaCart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pozaCart img {
+    width: 100px;
+    height: 120px;
+}
+
+.infoProductCart {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+}
+
+.cantitatePret {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.butonStergereProdusCos {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.butonStergereProdusCos form button, .butoaneCount form button {
+    all: unset;
+}
+
+.cosDeGunoi {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.fi-br-plus, .fi-br-minus {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.fi-br-plus {
+    color: rgb(28, 249, 0);
+}
+
+.fi-br-minus {
+    color: rgb(199, 0, 0);
+}
+
+.butoaneCount {
+    display: flex;
+    flex-flow: row;
+    gap: 10px;
+}
+
+/* Place order */
+.placeOrder {
+    width: 22rem;
+    display: flex;
+    flex-flow: column;
+}
+
+option {
+    color: black;
+    font-weight: 500;
+}
+
+/* input poze */
+.inputPhoto {
+    color: rgb(165, 165, 165);
+}
+
+/* alert rau */
+.alertRau {
+    background: #9a2828 !important;
+}
+
+
+.butoanePeAceeasiLinie {
+    display: flex;
+    gap: 10px;
+}
+
+.select{
+    all: unset;
+}
+.select > select{
+    color: black;
+}
+
+.priceWeight {
+    display: flex;
+    gap: 30px;
+}
+
+.titluNew {
+    width: 15.75rem;
+}
+
+/* Motor cautare */
+
+.motorCautare{
+    display:flex;
+    width: 50rem;
+    align-items: center;
+    justify-content: center;
+    margin-left: 200px;
+    margin-bottom: 10px;
+
+}
+
+.cautare {
+    width: 50px;
+
+}
+
+.inaltimeDate3 {
+    min-height: 30rem;
+}
+
+/* Vali */
+
+.container .popup-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.9);
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    display: none;
+}
+
+.times {
+    all: unset;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 60px;
+    font-weight: bolder;
+    color: white;
+    cursor: pointer;
+    z-index: 20;
+}
+
+.container .popup-image img, .pozaPopUp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    width: 950px;
+    height: 90%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px){
+    .container .popup-image img {
+        width: 95px;
+    }
+}
+
+
+/* Orders */
+
+details {
+    font-size: 18px;
+}
+
+details summary {
+    cursor: pointer;
+}
+
+.mySlides {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.images {
+    border-radius: 14px;
+}
+
+.popup-image .butonPoze {
+    position: absolute;
+    top: 22rem;
+    left: 20rem;
+    width: 50px;
+}
+
+.popup-image .butonPoze:nth-of-type(2) {
+    left: 78rem;
+}
+
+.images {
+    cursor: pointer;
+}
+
+hr {
+    margin-left: -30px;
+}
+
+/* Not found */
+
+.notFound {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.notFound img {
+    opacity: 0.4;
+}
+
+/* Text taiat */
+
+.oldPrice {
+    text-decoration: line-through;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.butoaneComanda {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+/* Radio button pentru livrare */
+.livrare {
+    height: auto;
+    width: auto;
+}
+
+.metodeDeLivrare {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.FirstLastName div {
+    width: 100%;
+}
+
+.discountCode {
+    width: 100%;
+}
+
+.discountCode input {
+    width: 49%;
+}
+
+.metodeDeLivrare div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    position: relative;
+    border-radius: 4px;
+}
+
+div.highlight {
+    background-color: rgba(255, 255, 255, 0.05);
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
+.metodeDeLivrare div input:checked ~ .highlight {
+    background-color: rgba(255, 255, 255, 0.3);
+}

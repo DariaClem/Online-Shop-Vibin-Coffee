@@ -1,0 +1,75 @@
+﻿<div class="registerBg">
+</div>
+
+<div class="cadru">
+    <div class="date3">
+        <div class="categoryCentrare pendingCentrare">
+            <h2>Order history</h2>
+            @if (((IEnumerable<dynamic>)ViewBag.Orders).Count() > 0)
+            {
+                @foreach (var order in ViewBag.Orders)
+                {
+                    var orditem = ((IEnumerable<dynamic>)ViewBag.OrderItems).Where(it => it.OrderId == order.Id);
+                    if (orditem.Count() > 0)
+                    {
+                        <div class="categoryName">Order Id: @order.Id</div>
+                        <p>Number of products: @orditem.Count()</p>
+                        float sum = 0;
+                        <details>
+                            <summary>Content of the order</summary>
+                            <div class="itemsFromCart">
+                                @foreach (var item in orditem)
+                                {
+
+                                    <div class="infoCart">
+                                        <div class="pozaInformatiiCart">
+                                            @{
+                                                var article = ((IEnumerable<dynamic>)ViewBag.Articles).Where(art => art.Id == item.ArticleId).First();
+                                            }
+                                            <div class="pozaCart">
+                                                @{
+                                                    var poza = ((IEnumerable<dynamic>)ViewBag.Photos).Where(poza => poza.ArticleId == item.ArticleId).First();
+                                                }
+                                                <img src="@poza.Id">
+                                            </div>
+                                            <div class="infoProductCart">
+                                                <div class="categoryName">@article.Category.CategoryName</div>
+                                                <p>@article.Title</p>
+                                                @{
+                                                    sum += article.Price * item.ArticleCount;
+                                                }
+                                                <p>Price: @((article.Price * item.ArticleCount).ToString("0.00")) USD</p>
+                                                <p>Quantity: @item.ArticleCount</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </details>
+                        @if (order.CouponId != null)
+                        {
+                            <p>Coupon applied: @order.CouponId</p>
+                            var newsum = sum - sum * @order.Coupon.Discount / 100;
+                            <p>Total amount: @newsum.ToString("0.00") USD</p>
+                            <p>Shippment details: @order.DeliveryMethod</p>
+                            <small>The @order.Coupon.Discount% off coupon has been applied to your order.</small>
+                            <small>You saved @(
+                                   (sum - newsum).ToString("0.00")) USD.</small>
+                        }
+                        else
+                        {
+                            <p>Total amount: @sum.ToString("0.00") USD</p>
+                            <p>Shippment details: @order.DeliveryMethod</p>
+                        }
+                    }
+                    <hr />
+                }
+            }
+            else
+            {
+                <p>You haven't ordered anything yet. </p>
+                <br />
+            }
+        </div>
+    </div>
+</div>

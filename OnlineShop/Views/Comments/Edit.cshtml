@@ -1,0 +1,63 @@
+﻿@model OnlineShop.Models.Comment
+
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+
+@{
+    ViewBag.Title = "Edit comment";
+}
+
+<div class="registerBg">
+</div>
+
+<div>
+    <div class="cadru">
+        <div class="date3">
+            <h2 class="comentariuh2">@ViewBag.Title</h2>
+            <div class="adaugaComentariu">
+                <div>
+                    <form method="post" action="/Comments/Edit/@ViewBag.Comment.Id">
+
+                        <label>Your comment</label>
+                        <br />
+
+                        <div class="ratingSelectare">
+                            <input type="radio" name="Rating" value="5" id="555"><label for="555">☆</label>
+                            <input type="radio" name="Rating" value="4" id="444"><label for="444">☆</label>
+                            <input type="radio" name="Rating" value="3" id="333"><label for="333">☆</label>
+                            <input type="radio" name="Rating" value="2" id="222"><label for="222">☆</label>
+                            <input type="radio" name="Rating" value="1" id="111"><label for="111">☆</label>
+                        </div>
+
+                        <textarea name="Content">@ViewBag.Comment.Content</textarea>
+                        <span class="emailConfirmat" asp-validation-for="Content"></span>
+                        <br />
+
+                        <button type="submit">Apply changes</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["message"] != null)
+{
+    <div class="alertCentru" id="alertCentru">
+        <div class="@TempData["classes"]" id="alert">
+            @if (TempData["symbol"] != null)
+            {
+                <p><i class="fi fi-br-check"></i>&nbsp;@TempData["message"]</p>
+            }
+            else
+            {
+                <p>@TempData["message"]</p>
+            }
+            <div class="inchis" id="inchis">
+                <i class="fi fi-br-cross"></i>
+            </div>
+        </div>
+    </div>
+}

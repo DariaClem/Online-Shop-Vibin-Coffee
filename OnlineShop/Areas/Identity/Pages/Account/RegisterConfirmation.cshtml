@@ -1,0 +1,32 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Register confirmation";
+}
+
+<div class="registerBg">
+</div>
+
+<div class="cadru">
+    <div class="date3">
+        <h2>@ViewData["Title"]</h2>
+        <br />
+        @{
+            if (@Model.DisplayConfirmAccountLink)
+            {
+                <p>
+                    Click here to confirm your account. If you don't want to confirm your account, you will not be able to access it afterwards.
+                </p>
+                <div class="register">
+                    <a id="confirm-link" href="@Model.EmailConfirmationUrl"><button class="butonFinal butonRegister"><span></span>Confirm email</button></a>
+                </div>
+                    }
+            else
+            {
+                <p>
+                        Please check your email to confirm your account.
+                </p>
+            }
+        }
+    </div>
+</div>

@@ -1,0 +1,85 @@
+﻿@model OnlineShop.Models.Coupon
+
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
+
+@{
+    ViewBag.Title = "Coupons";
+}
+
+<div class="registerBg">
+</div>
+
+
+<div>
+    <div class="cadru">
+        <div class="date3">
+            <h2 class="comentariuh2">@ViewBag.Title</h2>
+            <div class="adaugaComentariu">
+                <div>
+                    <form method="post" action="/Coupons/New">
+                        <label>Add a new coupon code:</label>
+                        <br />
+                        <input name="Id"/>
+                        <span class="emailConfirmat" asp-validation-for="Id"></span>
+                        <br /><br />
+                        <label>Add the discount coupon (a number between 0 and 100):</label>
+                        <input name="Discount"/>
+                        <span class="emailConfirmat" asp-validation-for="Discount"></span>
+                        <br />
+                        <br />
+                        <button type="submit">Add coupon</button>
+                    </form>
+
+                </div>
+                <br />
+                <h3>Coupon list:</h3>
+                <br />
+                <hr />
+                <br />
+            </div>
+            <div class="categoryCentrare pendingCentrare">
+                @foreach (var coup in ViewBag.Coupons)
+                {
+                    <div class="categories">
+                        <div class="pendingInfo">
+                            <div class="pendingText">
+                                <p>@coup.Id</p>
+                                <p>Discount: @coup.Discount %</p>
+                            </div>
+                        </div>
+                        <div class="pendingButoane">
+                            <a href="/Coupons/Edit/@coup.Id"><button class="butonProdus"><i class="fi fi-rr-edit"></i>&nbsp;Edit</button></a>
+                            <form method="post" action="/Coupons/Delete/@coup.Id">
+                                <button class="butonStergere" id="deleteCateg" type="submit"><i class="fi fi-sr-trash"></i>&nbsp;Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                    <hr />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["message"] != null)
+{
+    <div class="alertCentru" id="alertCentru">
+        <div class="@TempData["classes"]" id="alert">
+            @if (TempData["symbol"] != null)
+            {
+                <p><i class="fi fi-br-check"></i>&nbsp;@TempData["message"]</p>
+            }
+            else
+            {
+                <p>@TempData["message"]</p>
+            }
+            <div class="inchis" id="inchis">
+                <i class="fi fi-br-cross"></i>
+            </div>
+        </div>
+    </div>
+}

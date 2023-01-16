@@ -1,0 +1,205 @@
+﻿@model OnlineShop.Models.Article
+
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<div class="registerBg">
+</div>
+
+<div class="container">
+    <div class="popup-image">
+        <span class="times">&times;</span>
+        @{
+            var photos = ((IEnumerable<dynamic>)ViewBag.Photo).First();
+        }
+        <div class="pop">
+            <div class="pozaPopUp">
+                <img class="popUp" src="@photos.Id" onclick="console.log(10);"/>
+            </div>
+            <button class="butonPoze" onclick="plusDivs(-1)"><i class="fi fi-rr-angle-left"></i></button>
+            <button class="butonPoze" onclick="plusDivs(1)"><i class="fi fi-rr-angle-right"></i></button>
+        </div>
+    </div>
+</div>
+
+<div>
+<div class="cadru">
+    <div class="date3">
+        <div class="pozaPrezentare">
+            <div class="slideShow">
+                @foreach(var p in ViewBag.Photo)
+                {
+                    <div class="images">
+                        <img class="mySlides" src="@p.Id">
+                    </div>
+                }
+                <button class="butonPoze" onclick="plusDivs(-1)"><i class="fi fi-rr-angle-left"></i></button>
+                <button class="butonPoze" onclick="plusDivs(1)"><i class="fi fi-rr-angle-right"></i></button>
+            </div>
+            <div class="informatiiProdus">
+                @if (User.IsInRole("Admin") || (User.IsInRole("Colaborator") && ViewBag.Articles.UserId == ViewBag.UserCurent))
+                {
+                    <div class="butoanePeAceeasiLinie">
+                        <a href="/Articles/Edit/@ViewBag.Articles.Id"><button>Edit</button></a>
+                        <form method="post" action="/Articles/Delete/@ViewBag.Articles.Id">
+                            <button class="butonStergere" type="submit">Delete</button>
+                        </form>
+                    </div>
+                    <br />
+                }
+                <div class="categoryName">@ViewBag.Category.CategoryName</div>
+                <div class="rating">
+                    @if (ViewBag.Articles.Rating == 0)
+                    {
+                        <strong>☆ ☆ ☆ ☆ ☆</strong>
+                    }
+                    else if (ViewBag.Articles.Rating == 1)
+                    {
+                        <strong><a>☆</a> ☆ ☆ ☆ ☆</strong>
+                    }
+                    else if (ViewBag.Articles.Rating == 2)
+                    {
+                        <strong><a>☆</a> <a>☆</a> ☆ ☆ ☆</strong>
+                    }
+                    else if (ViewBag.Articles.Rating == 3)
+                    {
+                        <strong><a>☆</a> <a>☆</a> <a>☆</a> ☆ ☆</strong>
+                    }
+                    else if (ViewBag.Articles.Rating == 4)
+                    {
+                        <strong><a>☆</a> <a>☆</a> <a>☆</a> <a>☆</a> ☆</strong>
+                    }
+                    else if (ViewBag.Articles.Rating == 5)
+                    {
+                        <strong><a>☆</a> <a>☆</a> <a>☆</a> <a>☆</a> <a>☆</a></strong>
+                    }
+                </div>
+                <div class="centrareInfo">
+                    <strong>@ViewBag.Articles.Title</strong>
+                    <div class="pretCorect">
+                        <div class="price"><h3>Price: @((ViewBag.Articles.Price).ToString("0.00")) USD</h3></div>
+                    </div>
+                    <div><a>Weight: @ViewBag.Articles.Weight grams</a></div>
+                    <form method="post" action="/Articles/AddToCart/@ViewBag.Articles.Id">
+                        <button class="butonProdus"type="submit">Add to cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="descriereComentarii">
+            <div class="descriereProdus">
+                <h3>Description</h3>
+                <p>@ViewBag.Articles.Content</p>
+            </div>
+            <br />
+            <div class="comentariiProdus">
+                <h3>Comments</h3> 
+                @foreach (var comm in Model.Comments)
+                {
+                    <div>
+                        @*<partial name="ArticleRating" model="Model"></partial>*@
+                        <div class="rating">
+                            @if (comm.Rating == 0)
+                            {
+                                <strong>☆ ☆ ☆ ☆ ☆</strong>
+                            }
+                            else if (comm.Rating == 1)
+                            {
+                                <strong><a>☆</a> ☆ ☆ ☆ ☆</strong>
+                            }
+                            else if (comm.Rating == 2)
+                            {
+                                <strong><a>☆</a> <a>☆</a> ☆ ☆ ☆</strong>
+                            }
+                            else if (comm.Rating == 3)
+                            {
+                                <strong><a>☆</a> <a>☆</a> <a>☆</a> ☆ ☆</strong>
+                            }
+                            else if (comm.Rating == 4)
+                            {
+                                <strong><a>☆</a> <a>☆</a> <a>☆</a> <a>☆</a> ☆</strong>
+                            }
+                            else if (comm.Rating == 5)
+                            {
+                                <strong><a>☆</a> <a>☆</a> <a>☆</a> <a>☆</a> <a>☆</a></strong>
+                            }
+                        </div>
+                        <div class="comentariu">
+                            <div>
+                                <p>@comm.Content</p>
+                            </div>
+                        </div>
+                        <div class="butoaneEditare">
+                            <strong><i class="fi fi-sr-user"></i>&nbsp;@comm.User.UserName</strong>
+                            <small>@comm.Date</small>
+                            <br>
+                            @if (comm.UserId == ViewBag.UserCurent || ViewBag.EsteAdmin)
+                            {
+                                <div class="butoaneEditare">
+                                    <div>
+                                        <a href="/Comments/Edit/@comm.Id"><button class="butonEditare"><i class="fi fi-rr-edit"></i>&nbsp;Edit</button></a>
+                                    </div>
+                                    <div>
+                                        <form method="post" action="/Comments/Delete/@comm.Id">
+                                            <button type="submit" class="butonEditare"><i class="fi fi-sr-trash"></i>&nbsp;Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            }
+                            <br />
+                         </div>
+                    </div>
+                }
+            </div>
+            <br />
+            <div class="adaugaComentariu">
+                <div>
+                    <form method="post" action="/Articles/Show/@Model.Id">
+                        <div>
+                            <input type="hidden" name="ArticleId" value="@Model.Id" />
+                            <label>Your comment</label>
+                            <br />
+                            <div class="textarea">
+                                <textarea name="Content"></textarea>
+                            </div>
+                            <span class="emailConfirmat" asp-validation-for="Content"></span>
+                            <div class="ratingSelectare">
+                                <input type="radio" name="Rating" value="5" id="55"><label for="55">☆</label>
+                                <input type="radio" name="Rating" value="4" id="44"><label for="44">☆</label>
+                                <input type="radio" name="Rating" value="3" id="33"><label for="33">☆</label>
+                                <input type="radio" name="Rating" value="2" id="22"><label for="22">☆</label>
+                                <input type="radio" name="Rating" value="1" id="11"><label for="11">☆</label>
+                            </div>
+                            <button type="submit">Add comment</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["message"] != null)
+{
+    <div class="alertCentru" id="alertCentru">
+        <div class="@TempData["classes"]" id="alert">
+            @if (TempData["symbol"] != null)
+            {
+                <p><i class="fi fi-br-check"></i>&nbsp;@TempData["message"]</p>
+            }
+            else
+            {
+                <p>@TempData["message"]</p>
+            }
+            <div class="inchis" id="inchis">
+                <i class="fi fi-br-cross"></i>
+            </div>
+        </div>
+    </div>
+}

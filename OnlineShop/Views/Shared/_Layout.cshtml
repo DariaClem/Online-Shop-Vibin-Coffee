@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - OnlineShop</title>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @*<link rel="stylesheet" href="~/OnlineShop.styles.css" asp-append-version="true" />*@
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</head>
+<body>
+    <div class="body">
+        <header>
+            <nav>
+                <div class="navbar">
+                    <ul>
+                        <li>
+                            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="Articles" asp-action="Index">Articles</a>
+                        </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li>
+                                <a asp-area="" asp-controller="Users" asp-action="Index">Manage users</a>
+                            </li>
+                        }
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li>
+                                <a asp-area="" asp-controller="Orders" asp-action="Index">Orders</a>
+                            </li>
+                        }
+                    </ul>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Vibin' coffee</a>
+                    <partial name="_LoginPartial" />
+                </div>
+            </nav>
+        </header>
+        <div class="first">
+            <main role="main">
+                @RenderBody()
+            </main>
+        </div>
+        <footer>
+            <div>
+                &copy; 2022 - Vibin' Coffee
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </div>
+</body>
+</html>

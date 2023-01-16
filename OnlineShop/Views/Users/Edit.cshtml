@@ -1,0 +1,28 @@
+﻿@model OnlineShop.Models.ApplicationUser
+
+<div class="registerBg">
+</div>
+
+<div class="cadru">
+    <div class="date3">
+        <form method="post" action="/Users/Edit/@Model.Id">
+            <p>User: @Model.UserName</p>
+            <div class="select">
+                <select name="newRole">
+                @foreach (var rol in ViewBag.Roles)
+                {
+                        @if (ViewBag.UserRole == rol.Value)
+                        {
+                            <option selected="@ViewBag.UserRole" value="@rol.Value">@rol.Text</option>
+                        }
+                        else
+                        {
+                            <option value="@rol.Value">@rol.Text</option>
+                        }
+                    }
+                </select>
+                <button type="submit">Apply changes</button>
+            </div>
+        </form>
+    </div>
+</div>

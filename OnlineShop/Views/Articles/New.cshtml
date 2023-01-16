@@ -1,0 +1,94 @@
+﻿@model OnlineShop.Models.Article
+
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
+
+@{
+    ViewBag.Title = "Add product";
+}
+
+
+
+<div>
+    <div class="cadru">
+        <br />
+        <div class="date3">
+            <h2>@ViewBag.Title</h2>
+            <div class="adaugaComentariu">
+                <div>
+                    <form enctype="multipart/form-data" method="post" action="/Articles/New">
+                        <label>Select category:&nbsp;</label>
+                        <div class="select">
+                            <select name="CategoryId">
+                                @foreach(var item in ViewBag.Categories)
+                                {
+                                    <option value="@item.Id">@item.CategoryName</option>
+                                }
+                            </select>
+                        </div>
+                        <span class="emailConfirmat" asp-validation-for="CategoryId"></span>
+                        <br />
+                        <br />
+                        <label>Title:</label>
+                        <br />
+                        <input name="Title" class="titluNew"/>
+                        <br />
+                        <span class="emailConfirmat" asp-validation-for="Title"></span>
+                        <br />
+                        <label>Content:</label>
+                        <textarea name="Content"></textarea>
+                        <span class="emailConfirmat" asp-validation-for="Content"></span>
+                        <div class="priceWeight">
+                            <div>
+                                <label>Price (USD):</label>
+                                <input name="Price" pattern="^\d*(\,\d{0,2})?$" />
+                                <span class="emailConfirmat" asp-validation-for="Price"></span>
+                            </div>
+                            <div>
+                                <label>Weight (grams):</label>
+                                <input name="Weight" type="number" />
+                                <span class="emailConfirmat" asp-validation-for="Weight"></span>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <div>
+                            <label>Profile picture:</label>
+                            <input class="inputPhoto" type="file" name="photoProfile" />
+                            <br />
+                            <label>Presentation pictures:</label>
+                            <br />
+                            <small>Choose clear photos that best describe the product.</small>
+                            <input class="inputPhoto" type="file" name="photo1" />
+                            <input class="inputPhoto" type="file" name="photo2" />
+                            <input class="inputPhoto" type="file" name="photo3" />
+                        </div>
+                        <button type="submit">Add product</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["message"] != null)
+{
+    <div class="alertCentru" id="alertCentru">
+        <div class="@TempData["classes"]" id="alert">
+            @if (TempData["symbol"] != null)
+            {
+                <p><i class="fi fi-br-check"></i>&nbsp;@TempData["message"]</p>
+            }
+            else
+            {
+                <p>@TempData["message"]</p>
+            }
+            <div class="inchis" id="inchis">
+                <i class="fi fi-br-cross"></i>
+            </div>
+        </div>
+    </div>
+}

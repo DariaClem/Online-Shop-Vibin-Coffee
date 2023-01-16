@@ -1,0 +1,144 @@
+﻿@model OnlineShop.Models.Article
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css'>
+
+<div class="registerBg">
+</div>
+
+<div class="cadru">
+    <div class="date3 inaltimeDate3">
+        <form method="GET">
+            <div class="motorCautare">
+                <input type="text" placeholder="Search products or keywords" name="search" value="@ViewBag.SearchString">
+                <button class="butonProdus cautare" type="submit"><i class="fi fi-rr-search"></i></button>
+            </div>
+        </form>
+        <div class="navVertical">
+            <div class="sticky">
+                <div class="verticalNavbar">
+                    @if (User.IsInRole("Admin") || User.IsInRole("Colaborator"))
+                        {
+                        <ul>
+                            <li class="verticalLi"><a class="verticalA" href="/Articles/New"><i class="fi fi-sr-shopping-cart-add"></i>&nbsp;Products</a></li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="verticalLi"><a class="verticalA" href=" /Categories/New"><i class="fi fi-ss-add-folder"></i>&nbsp;Categories</a></li>
+                                <li class="verticalLi"><a class="verticalA" href=" /Articles/Pending"><i class="fi fi-ss-badge-check"></i>&nbsp;Requests&nbsp;
+                                        @if ((((IEnumerable<dynamic>)ViewBag.Requests).Where(art => art.Accepted == false)).Count() != 0)
+                                        {
+                                            <i class="fi fi-ss-circle-small"></i>
+                                        }
+                                    </a></li>
+                                <li class="verticalLi"><a class="verticalA" href="/Coupons/New"><i class="fi fi-rr-badge-percent"></i>&nbsp;Coupons</a></li>
+                            }
+                            @if (User.IsInRole("Colaborator"))
+                            {
+                                <li class="verticalLi"><a class="verticalA" href=" /Articles/Pending"><i class="fi fi-ss-badge-check"></i>&nbsp;My products</a></li>
+                            }
+                            </ul>
+                            <br />
+                        }
+                    <a>Order by</a>
+                    <ul>
+                        <li class="verticalLi"><a asp-action="Index" asp-route-filter="@ViewBag.PriceUp" class="verticalFilter"><i class="fi fi-sr-arrow-trend-up"></i>&nbsp;Price</a></li>
+                        <li class="verticalLi"><a asp-action="Index" asp-route-filter="@ViewBag.PriceDown" class="verticalFilter"><i class="fi fi-sr-arrow-trend-down"></i>&nbsp;Price</a></li>
+                        <li class="verticalLi"><a asp-action="Index" asp-route-filter="@ViewBag.RatingUp" class="verticalFilter"><i class="fi fi-sr-arrow-trend-up"></i>&nbsp;Rating</a></li>
+                        <li class="verticalLi"><a asp-action="Index" asp-route-filter="@ViewBag.RatingDown" class="verticalFilter"><i class="fi fi-sr-arrow-trend-down"></i>&nbsp;Rating</a></li>
+                        <li class="verticalLi"><a asp-action="Index" asp-route-filter="@ViewBag.DefaultOrder" class="verticalFilter"><i class="fi fi-rr-layers"></i>&nbsp;Default</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="produse">
+            @if(((IEnumerable<dynamic>)ViewBag.Articles).Count() == 0)
+            {
+                <div class="notFound">
+                    <p>Sorry, it seems that we didn't find a result matching your search.</p>
+                    <img src="~/Poze/no-results.png"/>
+                </div>
+            }
+            @foreach (var article in ViewBag.Articles)
+            {
+                <div class="card">
+                    <div class="contentBox">
+                        @{
+                            var p = (((IEnumerable<dynamic>)ViewBag.Photos).Where(id => id.ArticleId == article.Id).Where(id => id.isProfilePhoto == true)).FirstOrDefault();
+                            if (p != null)
+                            {
+                                <a href="/Articles/Show/@article.Id">
+                                    <img src="@p.Id" class="productImage">
+                                </a>
+                            }
+                        }
+                        <div class="descriere">
+                            <div>
+                                <div class="infoCard">
+                                    <h3 class="card-title">@article.Title</h3>
+
+                                    <div class="categoryName">@article.Category.CategoryName</div>
+                                    <div class="rating">
+                                        @if (article.Rating == 0)
+                                        {
+                                            <strong>☆ ☆ ☆ ☆ ☆</strong>
+                                        }
+                                        else if (article.Rating == 1)
+                                        {
+                                            <strong><a>☆</a> ☆ ☆ ☆ ☆</strong>
+                                        }
+                                        else if (article.Rating == 2)
+                                        {
+                                            <strong><a>☆</a> <a>☆</a> ☆ ☆ ☆</strong>
+                                        }
+                                        else if (article.Rating == 3)
+                                        {
+                                            <strong><a>☆</a> <a>☆</a> <a>☆</a> ☆ ☆</strong>
+                                        }
+                                        else if (article.Rating == 4)
+                                        {
+                                            <strong><a>☆</a> <a>☆</a> <a>☆</a> <a>☆</a> ☆</strong>
+                                        }
+                                        else if (article.Rating == 5)
+                                        {
+                                            <strong><a>☆</a> <a>☆</a> <a>☆</a> <a>☆</a> <a>☆</a></strong>
+                                        }
+                                    </div>
+
+                                    <div class="price">@((article.Price).ToString("0.00")) <i class="fi fi-rr-dollar"></i></div>
+                                </div>
+                                <div class="butoaneCumparare">
+                                    <a class="butonProdus" href="/Articles/Show/@article.Id"><button><span></span>Show product</button></a>
+                                    <form method="post" action="/Articles/AddToCart/@article.Id">
+
+                                        <button class="butonProdus" id="cos" type="submit"><i class="fi fi-rr-shopping-cart"></i></button>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@if (TempData["message"] != null)
+{
+    <div class="alertCentru" id="alertCentru">
+        <div class="@TempData["classes"]" id="alert">
+            @if (TempData["symbol"] != null)
+            {
+                    <p><i class="fi fi-br-check"></i>&nbsp;@TempData["message"]</p>
+            }
+            else
+            {
+                        <p>@TempData["message"]</p>
+            }
+                <div class="inchis" id="inchis">
+                    <i class="fi fi-br-cross"></i>
+                </div>
+            </div>
+        </div>
+}
