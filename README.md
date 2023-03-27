@@ -49,5 +49,13 @@ Colaboratorii vor putea să introducă produse, care însă vor fi verificate de
 
 Adminul are control deplin asupra aplicației. Suplimentar pe lângă colaborator, acesta va avea secțiunile _Categories_ și _Coupon_ unde poate crea, vedea, edita și șterge toate categoriile, respectiv cupoanele existente. El poate șterge orice produs existent. El vede request-urile trimise de colaboratori și le poate accepta sau șterge. Acesta gestionează conturile făcute. Poate atribui sau revoca drepturi utilizatorilor și, în final, le poate șterge. 
 
+## Fotografii
+
+![net1](https://user-images.githubusercontent.com/91901282/227981224-3793f15a-7617-4f72-b821-928a2d23a605.png)
+![net2](https://user-images.githubusercontent.com/91901282/227981220-349aa813-37c7-4931-8f1d-a83b833e1e3d.png)
+![net3](https://user-images.githubusercontent.com/91901282/227981205-9b6de620-520e-4180-ae2a-6ba37e3d7eed.png)
+![net4](https://user-images.githubusercontent.com/91901282/227981237-20cb9355-0a45-41c0-9913-48f989c072fd.png)
+
+
 ## Videoclip de prezentare
 https://user-images.githubusercontent.com/91901282/212734227-75d0322d-db4b-4eea-948a-2f842142b1dc.mp4
